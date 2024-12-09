@@ -35,19 +35,18 @@ static inline void toggleDebugLED(void) {
 }
 
 static void irqTick(void) {
-    // Clear the alarm irq
     hw_clear_bits(&timer_hw->intr, 1u << ALARM_NUM);
 
 	clockCounter++;
 
-    toggleDebugLED();
+    // toggleDebugLED();
 
     hw_set_bits(&timer_hw->inte, 1u << ALARM_NUM);
     timer_hw->alarm[ALARM_NUM] = (uint32_t)(timer_hw->timerawl + TIMER_INTERRUPT_DELAY_US);
 }
 
 void setupTimer(void) {
-    setupDebugLED();
+    // setupDebugLED();
 
     hw_set_bits(&timer_hw->inte, 1u << ALARM_NUM);
 

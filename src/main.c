@@ -5,6 +5,7 @@
 #include "pico/multicore.h"
 #include "hardware/irq.h"
 #include "hardware/flash.h"
+#include "hardware/watchdog.h"
 
 #include "led_def.h"
 #include "leds.h"
@@ -32,6 +33,7 @@ static inline void flashCurrentSlice(void) {
 }
 
 int main(void) {
+    watchdog_disable();
     setupLEDPins();
     initialisePWM();
     setupTimer();
